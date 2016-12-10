@@ -12,6 +12,7 @@ import org.testng.annotations.Test;
 import com.google.common.base.Function;
 
 public class WaitforObjectFluentWait{
+	
 	public WebDriver driver;
 	
 	@Test
@@ -19,7 +20,7 @@ public class WaitforObjectFluentWait{
 		driver=new FirefoxDriver();
 		driver.manage().window().maximize();
 		driver.get("https://sites.google.com/site/appsscripttutorial/user-interface/list-box");
-		waitForElementToAppear(By.linkText("HOME"));
+		waitForElement(By.linkText("HOME"));
 		System.out.println(driver.getTitle());
 		/*driver.findElement(By.linkText("Gmail")).click();
 		//waitForElementToAppear(By.id("Email"));
@@ -30,11 +31,14 @@ public class WaitforObjectFluentWait{
 		driver.findElement(By.id("signIn")).click();*/
 	}
 	
-	protected WebElement waitForElementToAppear(final By locator)
-	{
-		System.out.println("start");
-	  Wait<WebDriver> wait = new FluentWait<WebDriver>(driver).withTimeout(30, TimeUnit.SECONDS).
-			  pollingEvery(5, TimeUnit.SECONDS).ignoring(NoSuchElementException.class);
+	protected WebElement waitForElement(final By locator) {
+	
+	System.out.println("start");
+	
+	Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+			  					.withTimeout(30, TimeUnit.SECONDS)
+			  						.pollingEvery(5, TimeUnit.SECONDS)
+			  							.ignoring(NoSuchElementException.class);
 
 	  WebElement element = null;
 	  try {
@@ -58,13 +62,11 @@ public class WaitforObjectFluentWait{
 	      // throw new
 	      // NoSuchElementException("Timeout reached when waiting for element to be found!"
 	      // + e.getMessage(), correctErrorOutput);
-	      throw renamedErrorOutput;
+	    throw renamedErrorOutput;
 	    }
 	    e.addSuppressed(e);
 	    throw new NoSuchElementException("Timeout reached when searching for element!"+e);
-	  }
-
-	  return element;
+	  	}
+	  	return element;
+		}
 	}
-	
-}

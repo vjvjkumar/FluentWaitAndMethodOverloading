@@ -9,7 +9,7 @@ public class ChildClass extends WaitforObjectFluentWait{
 		/*parent.sum2numbers(10, 3);
 		parent.sum3numbers(12, 23, 45);*/
 		WaitforObjectFluentWait fluentwait=new WaitforObjectFluentWait();
-		fluentwait.waitForElementToAppear(By.linkText("Gmail"));
+		fluentwait.waitForElement(By.linkText("Gmail"));
 		parent.sum(12, 23,34);
 	}
 
